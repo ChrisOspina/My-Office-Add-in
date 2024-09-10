@@ -14,6 +14,7 @@ Office.onReady((info) => {
         document.getElementById("app-body").style.display = "flex";
         document.getElementById("create-chart").onclick = () => tryCatch(createChart);
         document.getElementById("freeze-header").onclick = () => tryCatch(freezeHeader);
+        document.getElementById("open-dialog").onclick = openDialog;
   }
 });
 
