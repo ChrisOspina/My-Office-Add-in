@@ -107,6 +107,24 @@ async function freezeHeader() {
 }
 
 
+let dialog = null;
+
+function openDialog() {
+    Office.context.ui.displayDialogAsync(
+        'https://localhost:3000/popup.html',
+        { height: 45, width: 55 },
+
+        function (result) {
+            dialog = result.value;
+            dialog.addEventHandler(Office.EventType.DialogMessageReceived, processMessage);
+        }
+    );
+}
+
+function processMessage(arg) {
+    document.getElementById("user-name").innerHTML = arg.message;
+    dialog.close();
+}
 
 /** Default helper for invoking an action and handling errors. */
 async function tryCatch(callback) {
@@ -117,4 +135,5 @@ async function tryCatch(callback) {
         console.error(error);
     }
 }
+
 
